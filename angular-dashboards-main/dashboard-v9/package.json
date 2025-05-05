@@ -1,0 +1,54 @@
+{
+  "name": "salvia-kit-dashboard-v9-angular",
+  "version": "1.0.0",
+  "author": "Enoch Ndika",
+  "license": "MIT",
+  "keywords": [
+    "ui",
+    "angular",
+    "components",
+    "dashboard",
+    "admin",
+    "tailwindcss",
+    "layout"
+  ],
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "dependencies": {
+    "@angular/animations": "^19.2.7",
+    "@angular/common": "^19.2.7",
+    "@angular/compiler": "^19.2.7",
+    "@angular/core": "^19.2.7",
+    "@angular/forms": "^19.2.7",
+    "@angular/platform-browser": "^19.2.7",
+    "@angular/platform-browser-dynamic": "^19.2.7",
+    "@angular/router": "^19.2.7",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.2.9",
+    "@angular/cli": "~19.2.9",
+    "@angular/compiler-cli": "^19.2.7",
+    "@types/jasmine": "~4.3.0",
+    "autoprefixer": "^10.4.14",
+    "jasmine-core": "~4.6.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.2",
+    "typescript": "~5.8.3"
+  },
+  "description": "![Salvia-kit Dashboard v9](https://www.salvia-kit.com/images/dashboards/dashv9.png)",
+  "main": "tailwind.config.js"
+}
