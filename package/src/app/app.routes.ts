@@ -15,7 +15,7 @@ export const routes: Routes = [
       {
         path: 'dashboard/dishes',
         loadChildren: () =>
-          import('./pages/pages.routes').then((m) => m.PagesRoutes),
+          import('./pages/dishes/dishes.routes').then((m) => m.DishesRoutes),
       },
       {
         path: 'dashboard/ingredients',

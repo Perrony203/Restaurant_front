@@ -37,6 +37,7 @@ export class HeaderComponent {
     this.alertService.AlertaCorfirmacion("Cuidadooo!!", "Estás seguro de cerrar sesión?").then((objAlert) =>{
       if(objAlert.isConfirmed){
         localStorage.removeItem('AuthToken');
+        localStorage.removeItem('UserName');
         this.router.navigate(['/authentication/login'])
       }
     })

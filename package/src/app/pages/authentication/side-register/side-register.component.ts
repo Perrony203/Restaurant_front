@@ -28,32 +28,11 @@ export class AppSideRegisterComponent {
   constructor(private settings: CoreService, private router: Router, private userService: UserService, private alertService: AlertService) {}
 
   form = new FormGroup({
-    name: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.pattern(/^[a-zA-Z\s]+$/),
-    ]),
-
-    clientId: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[0-9]{6,15}$/),
-    ]),
-
-    idType: new FormControl('', [
-      Validators.required,
-    ]),
-
-    phoneNumber: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^3\d{9}$/),
-    ]),
-
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(20),
-      Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)
-    ]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]),
+    clientId: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{6,15}$/)]),
+    idType: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern(/^3\d{9}$/)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)])
   });
 
   get f() {
@@ -82,7 +61,7 @@ export class AppSideRegisterComponent {
       },
       error:(err)=>{
         console.log(err);
-        this.alertService.AlertaNegativo("Ooops!", "No fue posible registrarte");
+        this.alertService.AlertaNegativo("Oops!", "No fue posible registrarte");
       }
     })
   }
