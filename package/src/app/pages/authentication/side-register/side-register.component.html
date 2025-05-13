@@ -30,36 +30,66 @@
 
           <div class="or-border m-t-30">Registrate</div>
 
-          <form class="m-t-30">
+          <form [formGroup]="form" class="m-t-30" (ngSubmit)="addUser()">
             <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Nombre</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput />
+              <input matInput formControlName="name"/>
+              <mat-error *ngIf="form.get('name')?.hasError('required')">
+                El usuario es requerido
+              </mat-error>
+              <mat-error *ngIf="form.get('name')?.hasError('minlength')">
+                Debe tener mínimo 3 caracteres
+              </mat-error>
+              <mat-error *ngIf="form.get('name')?.hasError('pattern')">
+                Debe tener solo caracteres alfabéticos
+              </mat-error>
             </mat-form-field>
             <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Identificación</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput />
+              <input matInput formControlName="clientId"/>
+              <mat-error *ngIf="form.get('clientId')?.hasError('required')">
+                El número de identificación es requerido
+              </mat-error>
+              <mat-error *ngIf="form.get('clientId')?.hasError('pattern')">
+                Debe tener mínimo 6 y máximo 15 caracteres numéricos
+              </mat-error>
             </mat-form-field>
             <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Tipo de Identificación</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-            <mat-label>Tipo de Identificación</mat-label>
-            <mat-select placeholder="Seleccione un tipo" formControlName="tipoId">
-              <mat-option *ngFor="let tipo of tiposId" [value]="tipo">{{ tipo }}</mat-option>
-            </mat-select>
+              <mat-select placeholder="Seleccione un tipo" formControlName="idType">
+                <mat-option *ngFor="let tipo of tiposId" [value]="tipo">{{ tipo }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('idType')?.hasError('required')">
+                Seleccione una opción
+              </mat-error>
             </mat-form-field>
             <!-- password -->
             <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Contraseña</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput type="password" />
+              <input matInput type="password" formControlName="password"/>
+              <mat-error *ngIf="form.get('password')?.hasError('required')">
+                La contraseña es requerida
+              </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('pattern')">
+                Debe contener minús, mayús y especiales
+              </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+                Debe tener mínimo 8 caracteres
+              </mat-error>
             </mat-form-field>
             <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Número de teléfono</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput />
+              <input matInput formControlName="phoneNumber"/>
+              <mat-error *ngIf="form.get('phoneNumber')?.hasError('required')">
+                El número de teléfono es requerido
+              </mat-error>
+              <mat-error *ngIf="form.get('phoneNumber')?.hasError('pattern')">
+                Debe comenzar con 3 y tener 10 caracteres numéricos
+              </mat-error>
             </mat-form-field>
-
-            <a [routerLink]="['/']" mat-flat-button color="primary" class="w-100">
-              Registrarse
-            </a>
-            <!-- input -->
+            
+            <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Registrarse</button>
+              
           </form>
           <span class="d-block f-w-500 text-center m-t-24">Ya tienes una cuenta?
 

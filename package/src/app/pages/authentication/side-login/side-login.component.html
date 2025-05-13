@@ -32,15 +32,30 @@
 
           <div class="or-border m-t-30">Ingresar</div>
 
-          <form class="m-t-30">
+          <form [formGroup]="form" class="m-t-30">
             <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Identificación</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput />
+              <input matInput type="clientId" formControlName="clientId" />
+              <mat-error *ngIf="form.get('clientId')?.hasError('required')">
+                El número de identificación es requerido
+              </mat-error>
+              <mat-error *ngIf="form.get('clientId')?.hasError('pattern')">
+                Debe tener mínimo 6 y máximo 15 caracteres numéricos
+              </mat-error>
             </mat-form-field>
             <!-- password -->
             <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Contraseña</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput type="password" />
+              <input matInput type="password" formControlName="password" />
+              <mat-error *ngIf="form.get('password')?.hasError('required')">
+                La contraseña es requerida
+              </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('pattern')">
+                Debe contener minús, mayús y especiales
+              </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+                Debe tener mínimo 8 caracteres
+              </mat-error>
             </mat-form-field>
 
             <!-- <div class="d-flex align-items-center m-b-12">
@@ -48,9 +63,9 @@
               <a [routerLink]="['/']" class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14">Forgot Password
                 ?</a>
             </div> -->
-            <a [routerLink]="['/']" mat-flat-button color="primary" class="w-100">
-              Ingresar
-            </a>
+            <div class="d-flex justify-center m-t-20">
+              <button mat-flat-button color="primary" (click)="submit()" [disabled]="form.invalid">Ingresar</button>
+            </div>  
             <!-- input -->
           </form>
           <p class = "text-center font-bold">No has deleitado tu paladar?</p>

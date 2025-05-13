@@ -1,6 +1,6 @@
 export interface User{
-    Id?: String;
-    IdType: String;        
+    clientId?: String;
+    idType: String;        
     name: String;
     phoneNumber: String;
     password: String;
