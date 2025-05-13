@@ -15,6 +15,10 @@ export const DishesRoutes: Routes = [{
         {
             path:'create',
             component: DishesFormComponent
+        },
+        {
+            path:'create/:id',
+            component: DishesFormComponent
         }
     ], canActivate: [authGuard]
 }];

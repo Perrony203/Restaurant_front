@@ -26,7 +26,7 @@ export class AlertService {
     });
   }
 
-  AlertaCorfirmacion(title:string, text: string){
+  AlertaConfirmacion(title:string, text: string){
     return Swal.fire({
       icon:"warning",
       title:title,

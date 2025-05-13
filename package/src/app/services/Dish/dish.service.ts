@@ -30,7 +30,7 @@ export class DishService {
     return this.http.get<Dish[]>(endpoint,{headers});
   }
 
-  deleteDish(dishId?: string){
+  deleteDish(dishId: string){
     const endpoint = `${this.api_url}/${dishId}`;
     const headers = {
       'Content-Type':"application/json",
@@ -48,12 +48,12 @@ export class DishService {
     return this.http.get<Dish>(endpoint,{headers});
   }
 
-  udpateDish(userId:string, userData: Dish){
-    const endpoint = `${this.api_url}/${userId}`;
+  udpateDish(dishId:string, dishData: Dish){
+    const endpoint = `${this.api_url}/${dishId}`;
     const headers = {
       'Content-Type':"application/json",
       'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`
     }
-    return this.http.put<Dish>(endpoint,userData,{headers});
+    return this.http.put<Dish>(endpoint,dishData,{headers});
   }
 }

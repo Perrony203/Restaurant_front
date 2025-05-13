@@ -1,9 +1,9 @@
 export interface Dish{
-    dishId?: String;
-    name: String;        
-    description: String;
+    dishId?: string;
+    name: string;        
+    description: string;
     price: Number;
-    preparationTime: String;
-    categoryName: String;
+    preparationTime: string;
+    categoryName: string;
     active: boolean;
 }

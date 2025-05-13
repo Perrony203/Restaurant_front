@@ -55,6 +55,7 @@ export class DishesFormComponent {
   getDishById(id: string){
     this.dishService.getDishById(id).subscribe({
       next:(dish:Dish)=>{
+        console.log(dish.categoryName)
         this.form.patchValue({
           name: dish.name,
           description: dish.description,
@@ -87,7 +88,7 @@ export class DishesFormComponent {
     if(this.editMode && this.dishId){
       this.dishService.udpateDish(this.dishId, dish).subscribe({
         next:(dish:Dish)=>{
-          this.alertService.AlertaCorfirmacion("Excelente!!", "Ahora el plato estará más delicioso").then((result) =>{
+          this.alertService.AlertaConfirmacion("Excelente!!", "Ahora el plato estará más delicioso").then((result) =>{
             if(result.isConfirmed)
               this.router.navigate(["/dashboard/dishes"])
           });
