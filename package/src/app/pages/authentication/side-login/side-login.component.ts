@@ -40,7 +40,8 @@ export class AppSideLoginComponent {
     this.authService.authenticate(clientId || '', password || '').subscribe({
       next:(res)=>{
         localStorage.setItem("AuthToken", res.token);
-        this.router.navigate(['/']);
+        localStorage.setItem("UserName", res.name);
+        this.router.navigate(['/dashboard/dishes']);
       }, 
       error:(err)=>{
         if(err.status == "400"){

@@ -23,7 +23,14 @@ export class SidebarComponent implements OnInit {
 
   constructor(private router: Router, private alertService: AlertService){}
   
-  ngOnInit(): void {}
+  userName: string = 'Usuario';
+
+  ngOnInit() {
+    const storedName = localStorage.getItem('UserName');
+    if (storedName) {
+      this.userName = storedName;
+    }
+  }
   
   logOut(){
     this.alertService.AlertaCorfirmacion("Cuidadooo!!", "Estás seguro de cerrar sesión?").then((objAlert) =>{
