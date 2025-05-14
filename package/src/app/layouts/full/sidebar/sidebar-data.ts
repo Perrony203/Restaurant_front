@@ -5,15 +5,13 @@ export const navItems: NavItem[] = [
     navCap: 'Opciones',
   },
   {
-    displayName: 'Dishes',
-    iconName: 'tools-kitchen-2',
-    route: '/dashboard/dishes',
+    displayName: 'Servicios',
+    iconName: 'tools',
+    route: '/dashboard/servicios',
   },
   {
-
-    displayName: 'Ingredients',
-    iconName: 'avocado',
-    route: '/dashboard/ingredients',
+    displayName: 'Empleados',
+    iconName: 'users',
+    route: '/dashboard/empleados',
   }
-
 ];
