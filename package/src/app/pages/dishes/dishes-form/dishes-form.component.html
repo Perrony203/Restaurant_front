@@ -1,0 +1,93 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>      
+      <div class="m-t-12">
+        <button mat-flat-button color="primary" class="m-r-8" (click)="guardarInfo()">Guardar</button>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <form [formGroup]="form">
+        <div class="row">
+          <!-- Campo Nombre -->
+          <div class="col-lg-6 m-b-16">
+            <mat-label class="f-w-600 m-b-8 d-block">Nombre</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput placeholder="Nombre del plato" formControlName="name" />
+              <mat-error *ngIf="form.get('name')?.hasError('pattern')">
+                El nombre debe contener solo caracteres alfabéticos 
+              </mat-error>
+              <mat-error *ngIf="form.get('name')?.hasError('required')">
+                El nombre del plato es requerido
+              </mat-error>
+              <mat-error *ngIf="form.get('name')?.hasError('minlength')">
+                El nombre debe tener por lo menos 5 caracteres 
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+          <!-- Campo Descripción -->
+          <div class="col-lg-6 m-b-16">
+            <mat-label class="f-w-600 m-b-8 d-block">Descripción</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput placeholder="Descripción del plato" formControlName="description" />
+              <mat-error *ngIf="form.get('description')?.hasError('required')">
+                La descripción del plato es requerida
+              </mat-error>
+              <mat-error *ngIf="form.get('description')?.hasError('minlength')">
+                La descripción debe tener entre 10 y 40 caracteres
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Campo Precio -->
+          <div class="col-lg-6 m-b-16">
+            <mat-label class="f-w-600 m-b-8 d-block">Precio (COP)</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput placeholder="Precio unitario" formControlName="price" />
+              <mat-error *ngIf="form.get('price')?.hasError('required')">
+                El precio del plato es requerido
+              </mat-error>
+              <mat-error *ngIf="form.get('price')?.hasError('min')">
+                El precio debe ser por lo menos 1000 pesos 
+              </mat-error>  
+              <mat-error *ngIf="form.get('price')?.hasError('pattern')">
+                El precio debe contener solo caracteres numéricos
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Campo Tiempo de preparación -->
+          <div class="col-lg-6 m-b-16">
+            <mat-label class="f-w-600 m-b-8 d-block">Tiempo de preparación (mins)</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput placeholder="Tiempo de preparación" formControlName="preparationTime" />
+              <mat-error *ngIf="form.get('preparationTime')?.hasError('required')">
+                El tiempo de preparación es requerido
+              </mat-error> 
+              <mat-error *ngIf="form.get('preparationTime')?.hasError('min')">
+                El tiempo de preparación debe ser mínimo de 5 minutos
+              </mat-error> 
+              <mat-error *ngIf="form.get('preparationTime')?.hasError('pattern')">
+                El tiempo de preparación debe contener solo caracteres numéricos
+              </mat-error>
+            </mat-form-field>            
+          </div>
+
+          <!-- Campo Categoría-->
+          <div class="col-lg-6 m-b-16">
+            <mat-label class="f-w-600 m-b-8 d-block">Categoría</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-select formControlName="categoryName">
+                <mat-option value="picar">Picar</mat-option>
+                <mat-option value="desayuno">Desayuno</mat-option>
+                <mat-option value="almuerzo">Almuerzo</mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('categoryName')?.hasError('required')">
+                Seleccione una opción
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
