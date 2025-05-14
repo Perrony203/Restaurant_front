@@ -1,0 +1,107 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>      
+      <div class="m-t-12">
+        <button mat-flat-button color="primary" class="m-r-8" (click)="guardarInfo()">Guardar</button>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <form [formGroup]="form">
+        <div class="row">
+            <!-- Campo Nombre del ingrediente -->
+            <div class="col-lg-6 m-b-16">
+                <mat-label class="f-w-600 m-b-8 d-block">Nombre del ingrediente</mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                    <input matInput placeholder="Ej: Tomate" formControlName="name" />
+                    <mat-error *ngIf="form.get('name')?.hasError('pattern')">
+                        El nombre debe contener solo letras y espacios
+                    </mat-error>
+                    <mat-error *ngIf="form.get('name')?.hasError('required')">
+                        El nombre es requerido
+                    </mat-error>
+                    <mat-error *ngIf="form.get('name')?.hasError('minlength')">
+                        El nombre debe tener al menos 3 caracteres
+                    </mat-error>
+                    <mat-error *ngIf="form.get('name')?.hasError('maxlength')">
+                        El nombre no debe superar los 50 caracteres
+                    </mat-error>
+                </mat-form-field>
+                </div>
+
+                <!-- Campo Stock total -->
+                <div class="col-lg-6 m-b-16">
+                    <mat-label class="f-w-600 m-b-8 d-block">Stock total</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput placeholder="Cantidad disponible" formControlName="stock" />
+                        <mat-error *ngIf="form.get('stock')?.hasError('required')">
+                            El stock es requerido
+                        </mat-error>
+                        <mat-error *ngIf="form.get('stock')?.hasError('min')">
+                            El stock debe ser al menos 1
+                        </mat-error>
+                        <mat-error *ngIf="form.get('stock')?.hasError('max')">
+                            El stock no puede superar 10000 unidades
+                        </mat-error>
+                        <mat-error *ngIf="form.get('stock')?.hasError('pattern')">
+                            Solo se permiten números enteros
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- Campo Precio -->
+                <div class="col-lg-6 m-b-16">
+                    <mat-label class="f-w-600 m-b-8 d-block">Precio unitario (COP)</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput placeholder="Precio por unidad" formControlName="price" />
+                        <mat-error *ngIf="form.get('price')?.hasError('required')">
+                            El precio es requerido
+                        </mat-error>
+                        <mat-error *ngIf="form.get('price')?.hasError('min')">
+                            El precio debe ser al menos $100
+                        </mat-error>
+                        <mat-error *ngIf="form.get('price')?.hasError('max')">
+                            El precio no debe superar $100.000
+                        </mat-error>
+                        <mat-error *ngIf="form.get('price')?.hasError('pattern')">
+                            El precio debe ser un número válido (puede tener decimales)
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- Campo Unidad de medida -->
+                <div class="col-lg-6 m-b-16">
+                    <mat-label class="f-w-600 m-b-8 d-block">Unidad de medida</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select placeholder="Selecciona una unidad" formControlName="stockUnits">
+                            <mat-option value="g">Gramos (g)</mat-option>
+                            <mat-option value="Kg">Kilos (Kg)</mat-option>  
+                            <mat-option value="ml">Mililitros (ml)</mat-option>                          
+                            <mat-option value="L">Litros (L)</mat-option>
+                            <mat-option value="pqs">Paquetes (Pqs)</mat-option>
+                            <mat-option value="Spns">Cucharadas (spoons)</mat-option>
+                            <mat-option value="Cups">Tasas (cups)</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('stockUnits')?.hasError('required')">
+                            La unidad de medida es requerida
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- Campo de proveedores -->
+                <div class="col-lg-6 m-b-16">
+                    <mat-label class="f-w-600 m-b-8 d-block">Proveedor</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select placeholder="Proveído por:" formControlName="supplier">
+                            <mat-option *ngFor="let supplier of suppliers" [value]="supplier">{{ supplier.name }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('supplier')?.hasError('required')">
+                            Seleccione un proveedor 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+        </form>
+    </mat-card-content>
+  </mat-card>
+  

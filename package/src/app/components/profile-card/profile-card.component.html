@@ -1,25 +1,62 @@
-<mat-card class="cardWithShadow text-center little-profile">
-    <img mat-card-image src="assets/images/backgrounds/profile-bg.jpg" class="profile-bg-height"
-        alt="Photo of a Shiba Inu" />
-    <mat-card-content class="p-24">
-        <div class="pro-img">
-            <img src="assets/images/profile/user-4.jpg" width="128" alt="user" class="rounded-circle" />
-        </div>
-        <h2 class="m-b-0 f-s-40 f-w-600 m-t-30 m-b-30">{{ dishData.name }}</h2>
-        <h3 class="m-b-0 f-s-15 f-w-400 m-t-30 m-b-30">{{ dishData.description }}</h3>
-        <div class="flex justify-center gap-8">
-            <div>
-                <h3 class="m-b-4 f-s-20 f-w-500">$ {{ dishData.price }}</h3>
-                <span class="f-s-14">Precio</span>
-            </div>
-            <div>
-                <h3 class="m-b-4 f-s-20 f-w-500" style = "margin-top: 25px;">{{ dishData.preparationTime }}</h3>
-                <span class="f-s-14">Tiempo de preparación</span>
-            </div>
-        </div>
-        <div style="display: flex; justify-content: center; gap: 24px; margin-top: 24px;">
-            <button (click) = "redirectUpdate()" mat-flat-button color="primary">Editar</button>
-            <button (click) = "Delete()" mat-flat-button style="background-color: #f44336; color: white;">Eliminar</button>
-        </div>
-    </mat-card-content>
+<mat-card
+  class="cardWithShadow text-center little-profile"
+  [ngStyle]="{
+    'background-color': !dishData.active ? '#e0e0e0' : '',
+    'color': !dishData.active ? '#888' : ''
+  }"
+>
+  <img
+    mat-card-image
+    src="assets/images/backgrounds/profile-bg.jpg"
+    class="profile-bg-height"
+    alt="Photo of a Shiba Inu"
+    [style.filter]="!dishData.active ? 'grayscale(100%) brightness(80%) contrast(80%)' : ''"
+  />
+
+  <mat-card-content class="p-24">
+    <div class="pro-img">
+      <img
+        src="assets/images/profile/user-4.jpg"
+        width="128"
+        alt="user"
+        class="rounded-circle"
+        [style.filter]="!dishData.active ? 'grayscale(100%) brightness(80%) contrast(80%)' : ''"
+      />
+    </div>
+
+    <h2 class="m-b-0 f-s-40 f-w-600 m-t-30 m-b-30">{{ dishData.name }}</h2>
+    <h3 class="m-b-0 f-s-15 f-w-400 m-t-30 m-b-30">{{ dishData.description }}</h3>
+
+    <div class="flex justify-center gap-8">
+      <div>
+        <h3 class="m-b-4 f-s-20 f-w-500">$ {{ dishData.price }}</h3>
+        <span class="f-s-14">Precio</span>
+      </div>
+      <div>
+        <h3 class="m-b-4 f-s-20 f-w-500" style="margin-top: 25px;">
+          {{ dishData.preparationTime }}
+        </h3>
+        <span class="f-s-14">Tiempo de preparación</span>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 24px; margin-top: 24px;">
+      <button
+        (click)="redirectUpdate()"
+        mat-flat-button
+        color="primary"
+        [disabled]="!dishData.active"
+      >
+        Editar
+      </button>
+      <button
+        (click)="changeStatus()"
+        mat-flat-button
+        [style.background-color]="dishData.active ? '#f44336' : '#36db2a'"
+        style="color: white;"
+      >
+        {{ dishData.active ? 'Eliminar' : 'Habilitar' }}
+      </button>
+    </div>
+  </mat-card-content>
 </mat-card>

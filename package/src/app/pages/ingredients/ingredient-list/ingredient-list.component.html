@@ -1,0 +1,43 @@
+<mat-card class="cardWithShadow m-t-16">
+    <mat-card-content>
+      <div class="d-flex">
+        <div class="m-r-auto m-b-8">
+          <mat-card-title>Productos</mat-card-title>
+          <mat-card-subtitle>Lista de productos</mat-card-subtitle>
+        </div>
+        <div>
+          <a [routerLink] = "['/dashboard/ingredients/create']">
+              <button mat-flat-button color="primary" class="m-r-8">Añadir ingrediente</button>
+          </a>
+        </div>
+      </div>
+      
+  
+      <div class="table-responsive">
+        <table class="w-100">
+          <thead>
+            <tr>
+              <th class="f-w-600 f-s-14">Ingrediente</th>
+              <th class="f-w-600 f-s-14">Cantidad en stock</th>
+              <th class="f-w-600 f-s-14">Precio por unidad</th>
+              <th class="f-w-600 f-s-14">Unidad</th>
+              <th class="f-w-600 f-s-14">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ingredient of ingredientList">
+              <td>{{ ingredient.name }}</td>
+              <td>{{ ingredient.stock }}</td>
+              <td>{{ ingredient.price }}</td>
+              <td>{{ ingredient.stockUnits }}</td>
+              <td>
+                <button mat-icon-button color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>  
