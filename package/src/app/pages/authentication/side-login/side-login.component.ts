@@ -5,19 +5,30 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/services/Auth/auth.service';
+import { AlertService } from 'src/app/services/Alert/alert.service';
 
 @Component({
   selector: 'app-side-login',
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './side-login.component.html',
 })
 export class AppSideLoginComponent {
 
-  constructor( private router: Router) {}
+  constructor( private router: Router, private authService: AuthService, private alertService: AlertService) {}
 
   form = new FormGroup({
-    uname: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    password: new FormControl('', [Validators.required]),
+    clientId: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[0-9]{6,15}$/),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(20),
+      Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)
+    ]),
   });
 
   get f() {
@@ -25,7 +36,21 @@ export class AppSideLoginComponent {
   }
 
   submit() {
-    // console.log(this.form.value);
-    this.router.navigate(['/']);
+    const { clientId, password } = this.form.value;
+    this.authService.authenticate(clientId || '', password || '').subscribe({
+      next:(res)=>{
+        localStorage.setItem("AuthToken", res.token);
+        localStorage.setItem("UserName", res.name);
+        this.router.navigate(['/dashboard/dishes']);
+      }, 
+      error:(err)=>{
+        if(err.status == "400"){
+          this.alertService.AlertaNegativo("Oops!", "Verifica tus credenciales");
+        }else{        
+          this.alertService.AlertaNegativo("Oops!", "No fue posible iniciar sesión");
+        }
+      }
+
+    })
   }
 }

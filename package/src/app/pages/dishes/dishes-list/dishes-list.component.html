@@ -1,0 +1,18 @@
+<mat-card class="" cardWithShadow>
+    <mat-card-content>
+        <div class="d-flex">
+            <div class="m-r-auto m-b-8">
+                <mat-card-title>Platos</mat-card-title>
+                <mat-card-subtitle>disponibles</mat-card-subtitle>
+            </div>
+            <div>
+                <a [routerLink] = "['/dashboard/dishes/create']">
+                    <button mat-flat-button color="primary" class="m-r-8">Añadir plato</button>
+                </a>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+            <app-profile-card *ngFor="let dish of dishList" [dishData]="dish"></app-profile-card>
+        </div>
+    </mat-card-content>
+</mat-card>
