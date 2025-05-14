@@ -284,6 +284,16 @@ export const navItems: NavItem[] = [
     route: '/ui-components/tables',
   },
   {
+    displayName: 'Servicios',
+    iconName: 'tools',
+    route: '/ui-components/servicios',
+  },
+  {
+    displayName: 'Empleados',
+    iconName: 'users',
+    route: '/ui-components/empleados',
+  },
+  {
     displayName: 'Expansion Panel',
     iconName: 'layout-bottombar-inactive',
     route: 'https://materialpro-angular-main.netlify.app/ui-components/expansion',
@@ -960,5 +970,15 @@ export const navItems: NavItem[] = [
     chip: true,
     chipClass: 'bg-primary text-white',
     chipContent: 'PRO',
+  },
+  {
+    displayName: 'Servicios',
+    iconName: 'tools',
+    route: '/servicios',
+  },
+  {
+    displayName: 'Empleados',
+    iconName: 'users',
+    route: '/empleados',
   },
 ];
