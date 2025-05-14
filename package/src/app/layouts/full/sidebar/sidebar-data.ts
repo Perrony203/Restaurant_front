@@ -10,8 +10,10 @@ export const navItems: NavItem[] = [
     route: '/dashboard/dishes',
   },
   {
+
     displayName: 'Ingredients',
     iconName: 'avocado',
     route: '/dashboard/ingredients',
   }
+
 ];
