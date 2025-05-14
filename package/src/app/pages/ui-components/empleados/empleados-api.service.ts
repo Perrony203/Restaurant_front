@@ -16,7 +16,7 @@ export interface Empleado {
   providedIn: 'root'
 })
 export class EmpleadosApiService {
-  private apiUrl = 'http://localhost:3000/api/employees'; // Cambia la URL según tu backend
+  private apiUrl = 'http://localhost:3000/restaurant/employees'; // Cambia la URL según tu backend
 
   constructor(private http: HttpClient) {}
 

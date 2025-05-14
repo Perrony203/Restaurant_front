@@ -13,5 +13,15 @@ export const navItems: NavItem[] = [
     displayName: 'Empleados',
     iconName: 'users',
     route: '/dashboard/empleados',
+  },
+  {
+    displayName: 'Services',
+    iconName: 'settings',
+    route: '/dashboard/services',
+  },
+  {
+    displayName: 'Employees',
+    iconName: 'user-check',
+    route: '/dashboard/employees',
   }
 ];
