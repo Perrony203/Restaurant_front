@@ -1,0 +1,14 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.custom-warn-button {
+  background-color: #f44336; /* rojo Material */
+  color: white;
+}
+
+.custom-warn-button:hover {
+  background-color: #d32f2f;
+}
