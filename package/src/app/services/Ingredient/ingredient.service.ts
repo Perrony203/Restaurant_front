@@ -58,8 +58,8 @@ export class IngredientService {
     return this.http.put<Ingredient>(endpoint,ingredientData,{headers});
   }
 
-  getSupplierById(ingredientId:string){
-    const endpoint = `${this.api_url}/supplier/${ingredientId}`;
+  getSupplierById(supplierId:String){
+    const endpoint = `${this.api_suppliers_url}/${supplierId}`;
     const headers = {
       'Content-Type':"application/json",
       'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`

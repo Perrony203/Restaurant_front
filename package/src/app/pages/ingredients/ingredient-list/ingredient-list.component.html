@@ -26,13 +26,16 @@
           </thead>
           <tbody>
             <tr *ngFor="let ingredient of ingredientList">
-              <td>{{ ingredient.name }}</td>
-              <td>{{ ingredient.stock }}</td>
-              <td>{{ ingredient.price }}</td>
-              <td>{{ ingredient.stockUnits }}</td>
-              <td>
-                <button mat-icon-button color="warn">
+              <td class="text-center">{{ ingredient.name }}</td>
+              <td class="text-center">{{ ingredient.stock }}</td>
+              <td class="text-center">{{ ingredient.stockUnits }}</td>
+              <td class="text-center">{{ ingredient.price }}</td>              
+              <td class="text-center">
+                <button (click)="Delete(ingredient.ingredientId!)" mat-icon-button color="warn">
                   <mat-icon>delete</mat-icon>
+                </button>
+                <button [routerLink]="['/dashboard/ingredients/create', ingredient.ingredientId]" mat-icon-button color="warn">
+                  <mat-icon>edit</mat-icon>
                 </button>
               </td>
             </tr>

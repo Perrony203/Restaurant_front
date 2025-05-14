@@ -1,8 +1,8 @@
 export interface Ingredient{
-    ingredientId?: String;
-    name: String;        
+    ingredientId?: string;
+    name: string;        
     stock: Number;
     price: Number;
-    stockUnits: String;
-    supplierId: String;
+    stockUnits: string;
+    supplierId: string;
 }

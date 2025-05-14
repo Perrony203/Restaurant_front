@@ -47,26 +47,6 @@
                     </mat-form-field>
                 </div>
 
-                <!-- Campo Precio -->
-                <div class="col-lg-6 m-b-16">
-                    <mat-label class="f-w-600 m-b-8 d-block">Precio unitario (COP)</mat-label>
-                    <mat-form-field appearance="outline" class="w-100" color="primary">
-                        <input matInput placeholder="Precio por unidad" formControlName="price" />
-                        <mat-error *ngIf="form.get('price')?.hasError('required')">
-                            El precio es requerido
-                        </mat-error>
-                        <mat-error *ngIf="form.get('price')?.hasError('min')">
-                            El precio debe ser al menos $100
-                        </mat-error>
-                        <mat-error *ngIf="form.get('price')?.hasError('max')">
-                            El precio no debe superar $100.000
-                        </mat-error>
-                        <mat-error *ngIf="form.get('price')?.hasError('pattern')">
-                            El precio debe ser un número válido (puede tener decimales)
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-
                 <!-- Campo Unidad de medida -->
                 <div class="col-lg-6 m-b-16">
                     <mat-label class="f-w-600 m-b-8 d-block">Unidad de medida</mat-label>
@@ -85,6 +65,26 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
+
+                <!-- Campo Precio -->
+                <div class="col-lg-6 m-b-16">
+                    <mat-label class="f-w-600 m-b-8 d-block">Precio unitario (COP)</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput placeholder="Precio por unidad" formControlName="price" />
+                        <mat-error *ngIf="form.get('price')?.hasError('required')">
+                            El precio es requerido
+                        </mat-error>
+                        <mat-error *ngIf="form.get('price')?.hasError('min')">
+                            El precio debe ser al menos $100
+                        </mat-error>
+                        <mat-error *ngIf="form.get('price')?.hasError('max')">
+                            El precio no debe superar $100.000
+                        </mat-error>
+                        <mat-error *ngIf="form.get('price')?.hasError('pattern')">
+                            El precio debe ser un número válido (puede tener decimales)
+                        </mat-error>
+                    </mat-form-field>
+                </div>                
 
                 <!-- Campo de proveedores -->
                 <div class="col-lg-6 m-b-16">

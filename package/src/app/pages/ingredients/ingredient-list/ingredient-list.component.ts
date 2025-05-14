@@ -23,6 +23,25 @@ export class IngredientListComponent {
   ngOnInit(){
     this.getIngredients();    
   }
+  Delete(ingredientId: string){
+    this.alertService.AlertaConfirmacion("Cuidadooo!!", "Estás seguro de dejar vacía la despensa??").then((objAlert) =>{
+        if(objAlert.isConfirmed){
+          this.ingredientService.deleteIngredient(ingredientId).subscribe(
+          {
+            next: () =>{          
+                this.alertService.AlertaInfo("No hay problema", "Luego tendremos más")          
+            },
+            error: (err)=>{
+              this.alertService.AlertaNegativo("Oops!!!", "El ingrediente se resiste a irse")
+            }
+          })        
+        }
+      })
+
+
+
+    
+  }
 
   getIngredients(){
     this.ingredientService.getIngredients().subscribe(

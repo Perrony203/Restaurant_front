@@ -69,14 +69,15 @@ export class IngredientFormComponent {
   getIngredientById(id: string){
     this.ingredientService.getIngredientById(id).subscribe({
       next:(ingredient:Ingredient)=>{
-        this.ingredientService.getSupplierById(id).subscribe({
+        this.ingredientService.getSupplierById(ingredient.supplierId).subscribe({
           next:(supplier:Supplier)=>{
+            console.log(supplier.name);
             this.form.patchValue({
               name: ingredient.name,
               stock: ingredient.stock,
               price: ingredient.price,
               stockUnits: ingredient.stockUnits,  
-              supplierId: supplier.supplierId        
+              supplier: supplier.name        
             })
           }, error:()=>{
           }
