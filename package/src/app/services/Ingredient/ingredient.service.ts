@@ -37,7 +37,7 @@ export class IngredientService {
       'Content-Type':"application/json",
       'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`
     }
-    return this.http.delete(endpoint,{headers});
+    return this.http.post(endpoint,{headers});
   }
 
   getIngredientById(ingredientId:string){

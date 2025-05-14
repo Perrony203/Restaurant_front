@@ -29,7 +29,11 @@ export class IngredientListComponent {
           this.ingredientService.deleteIngredient(ingredientId).subscribe(
           {
             next: () =>{          
-                this.alertService.AlertaInfo("No hay problema", "Luego tendremos más")          
+              this.alertService.AlertaInfo("No hay problema", "Luego tendremos más").then((objAlert) =>{
+                if(objAlert.isConfirmed){   
+                  window.location.reload();
+                }
+              })   
             },
             error: (err)=>{
               this.alertService.AlertaNegativo("Oops!!!", "El ingrediente se resiste a irse")
