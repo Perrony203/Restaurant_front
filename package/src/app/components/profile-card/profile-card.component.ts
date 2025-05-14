@@ -14,6 +14,7 @@ import { DishService } from 'src/app/services/Dish/dish.service';
 })
 export class AppProfileCardComponent {
   @Input() dishData: Dish;
+  category:string;
   
   constructor(private router: Router, private dishService: DishService, private alertService: AlertService){}
 
@@ -23,6 +24,7 @@ export class AppProfileCardComponent {
   Delete(){
     this.alertService.AlertaConfirmacion("Cuidadooo!!", "Estás seguro de Borrar el plato??").then((objAlert) =>{
           if(objAlert.isConfirmed){
+            console.log(this.dishData.dishId)
             this.dishService.deleteDish(this.dishData.dishId!).subscribe({
               next:()=>{
                 this.alertService.AlertaPositivo("Excelente!!","No más paladares tristes")

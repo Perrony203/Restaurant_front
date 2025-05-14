@@ -25,8 +25,8 @@ export class DishesFormComponent {
     private router:Router, 
     private dishService: DishService, 
     private fb: FormBuilder,
-    private alertService: AlertService
-  ){}
+    private alertService: AlertService    
+  ){}  
 
   initForm():void{
     this.form = this.fb.group({
@@ -55,14 +55,21 @@ export class DishesFormComponent {
   getDishById(id: string){
     this.dishService.getDishById(id).subscribe({
       next:(dish:Dish)=>{
-        console.log(dish.categoryName)
-        this.form.patchValue({
-          name: dish.name,
-          description: dish.description,
-          price: dish.price,
-          preparationTime: dish.preparationTime,
-          categoryName: dish.categoryName
-        })
+        this.dishService.getCategory(dish.categoryId).subscribe({
+          next: (res) =>{            
+            dish.categoryId = res.name;
+            this.form.patchValue({
+              name: dish.name,
+              description: dish.description,
+              price: dish.price,
+              preparationTime: dish.preparationTime,
+              categoryName: dish.categoryId.toLowerCase()
+            })
+          },
+          error: (err)=>{
+            this.alertService.AlertaNegativo("Oops!!!", "Los platos se pelearon y no se conocen")
+          }
+        })        
       }, error:()=>{
         console.log("Error en el llenado automático de los datos");
       }
@@ -80,7 +87,7 @@ export class DishesFormComponent {
       description: this.form.value.description,
       price: this.form.value.price!,
       preparationTime: this.form.value.preparationTime!,
-      categoryName: this.form.value.categoryName!,
+      categoryId: this.form.value.categoryName!,
       active: true
     }
 

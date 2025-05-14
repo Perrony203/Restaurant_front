@@ -25,21 +25,21 @@ export class DishesListComponent {
     this.getDishes();    
   }
 
-    getDishes(){
-      this.dishService.getDishes().subscribe(
-        {
-          next: (res) =>{
-            this.dishList = res;
-            if (this.dishList.length == 0){
-              this.alertService.AlertaInfo("Lo sentimos", "No hay nadie en la cocina")
-            }
-          },
-          error: (err)=>{
-            this.alertService.AlertaNegativo("Oops!!!", "Algo inesperado sucedió en la cocina")
+  getDishes(){
+    this.dishService.getDishes().subscribe(
+      {
+        next: (res) =>{
+          this.dishList = res;
+          if (this.dishList.length == 0){
+            this.alertService.AlertaInfo("Lo sentimos", "No hay nadie en la cocina")
           }
+        },
+        error: (err)=>{
+          this.alertService.AlertaNegativo("Oops!!!", "Algo inesperado sucedió en la cocina")
         }
-      )
-    }
+      }
+    )
+  }
 
 
 }

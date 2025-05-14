@@ -4,6 +4,6 @@ export interface Dish{
     description: string;
     price: Number;
     preparationTime: string;
-    categoryName: string;
+    categoryId: string;
     active: boolean;
 }
