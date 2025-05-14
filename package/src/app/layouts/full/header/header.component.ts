@@ -34,9 +34,10 @@ export class HeaderComponent {
   constructor(private router: Router, private alertService: AlertService){}
 
   logOut(){
-    this.alertService.AlertaCorfirmacion("Cuidadooo!!", "Estás seguro de cerrar sesión?").then((objAlert) =>{
+    this.alertService.AlertaConfirmacion("Cuidadooo!!", "Estás seguro de cerrar sesión?").then((objAlert) =>{
       if(objAlert.isConfirmed){
         localStorage.removeItem('AuthToken');
+        localStorage.removeItem('UserName');
         this.router.navigate(['/authentication/login'])
       }
     })

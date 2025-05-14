@@ -40,13 +40,14 @@ export class AppSideLoginComponent {
     this.authService.authenticate(clientId || '', password || '').subscribe({
       next:(res)=>{
         localStorage.setItem("AuthToken", res.token);
-        this.router.navigate(['/']);
+        localStorage.setItem("UserName", res.name);
+        this.router.navigate(['/dashboard/dishes']);
       }, 
       error:(err)=>{
         if(err.status == "400"){
-          this.alertService.AlertaNegativo("Ooops!", "Verifica tus credenciales");
+          this.alertService.AlertaNegativo("Oops!", "Verifica tus credenciales");
         }else{        
-          this.alertService.AlertaNegativo("Ooops!", "No fue posible iniciar sesión");
+          this.alertService.AlertaNegativo("Oops!", "No fue posible iniciar sesión");
         }
       }
 

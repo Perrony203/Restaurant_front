@@ -17,7 +17,16 @@ export class AlertService {
     });
   }
 
-  AlertaCorfirmacion(title:string, text: string){
+  AlertaInfo(title:string, text: string){
+    return Swal.fire({
+      icon:"info",
+      title: title,
+      text: text,
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  AlertaConfirmacion(title:string, text: string){
     return Swal.fire({
       icon:"warning",
       title:title,
