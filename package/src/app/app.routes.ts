@@ -20,7 +20,7 @@ export const routes: Routes = [
       {
         path: 'dashboard/ingredients',
         loadChildren: () =>
-          import('./pages/pages.routes').then((m) => m.PagesRoutes),
+          import('./pages/ingredients/ingredients.route').then((m) => m.IngredientRoutes),
       },      
     ],
   },

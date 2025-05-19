@@ -1,0 +1,46 @@
+<mat-card class="cardWithShadow m-t-16">
+    <mat-card-content>
+      <div class="d-flex">
+        <div class="m-r-auto m-b-8">
+          <mat-card-title>Productos</mat-card-title>
+          <mat-card-subtitle>Lista de productos</mat-card-subtitle>
+        </div>
+        <div>
+          <a [routerLink] = "['/dashboard/ingredients/create']">
+              <button mat-flat-button color="primary" class="m-r-8">Añadir ingrediente</button>
+          </a>
+        </div>
+      </div>
+      
+  
+      <div class="table-responsive">
+        <table class="w-100">
+          <thead>
+            <tr>
+              <th class="f-w-600 f-s-14">Ingrediente</th>
+              <th class="f-w-600 f-s-14">Cantidad en stock</th>
+              <th class="f-w-600 f-s-14">Precio por unidad</th>
+              <th class="f-w-600 f-s-14">Unidad</th>
+              <th class="f-w-600 f-s-14">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ingredient of ingredientList">
+              <td class="text-center">{{ ingredient.name }}</td>
+              <td class="text-center">{{ ingredient.stock }}</td>
+              <td class="text-center">{{ ingredient.stockUnits }}</td>
+              <td class="text-center">{{ ingredient.price }}</td>              
+              <td class="text-center">
+                <button (click)="Delete(ingredient.ingredientId!)" mat-icon-button color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <button [routerLink]="['/dashboard/ingredients/create', ingredient.ingredientId]" mat-icon-button color="warn">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>  

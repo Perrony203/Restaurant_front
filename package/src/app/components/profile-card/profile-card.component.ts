@@ -21,18 +21,41 @@ export class AppProfileCardComponent {
   redirectUpdate(){
     this.router.navigate(['/dashboard/dishes/create', this.dishData.dishId])
   }
-  Delete(){
-    this.alertService.AlertaConfirmacion("Cuidadooo!!", "Estás seguro de Borrar el plato??").then((objAlert) =>{
-          if(objAlert.isConfirmed){
-            console.log(this.dishData.dishId)
-            this.dishService.deleteDish(this.dishData.dishId!).subscribe({
-              next:()=>{
-                this.alertService.AlertaPositivo("Excelente!!","No más paladares tristes")
-              }, error:()=>{
-                console.log("No se pudo actualizar el plato");
-              }
-          })
-          }
+  changeStatus(){
+    if(this.dishData.active == true){
+      this.alertService.AlertaConfirmacion("Cuidadooo!!", "Estás seguro de Borrar el plato??").then((objAlert) =>{
+        if(objAlert.isConfirmed){
+          console.log(this.dishData.dishId)
+          this.dishService.deleteDish(this.dishData.dishId!).subscribe({
+            next:()=>{
+              this.alertService.AlertaPositivo("Excelente!!","Nunevos sabores vendrán").then((objAlert) =>{
+                if(objAlert.isConfirmed){
+                  window.location.reload();
+                }
+              })
+            }, error:()=>{
+              console.log("No se pudo actualizar el plato");
+            }
         })
+        }
+      })
+    }else{
+      this.alertService.AlertaConfirmacion("Que bieeen!!", "Listo para recordar los sabores del pasado??").then((objAlert) =>{
+        if(objAlert.isConfirmed){
+          console.log(this.dishData.dishId)
+          this.dishService.deleteDish(this.dishData.dishId!).subscribe({
+            next:()=>{
+              this.alertService.AlertaPositivo("Excelente!!","Tal y como antes").then((objAlert) =>{
+                if(objAlert.isConfirmed){
+                  window.location.reload();
+                }
+              })
+            }, error:()=>{
+              console.log("No se pudo actualizar el plato");
+            }
+        })
+        }
+      })
+    }
   }
 }
