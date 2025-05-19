@@ -1,0 +1,76 @@
+<mat-card class="cardWithShadow m-t-16">
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="simple-form">
+      <div class="header-row">
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Guardar</button>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label class="form-label">ID del empleado</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="number" formControlName="employeeId" placeholder="ID del empleado" required [readonly]="isEdit" />
+            <mat-error *ngIf="form.get('employeeId')?.hasError('required') && (form.get('employeeId')?.touched || submitted)">
+              Se necesita el ID del empleado.
+            </mat-error>
+            <mat-error *ngIf="form.get('employeeId')?.hasError('pattern') && (form.get('employeeId')?.touched || submitted)">
+              Solo se permiten números.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="form-label">Tipo de documento</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select formControlName="idType" placeholder="Tipo de documento" required>
+              <mat-option *ngFor="let type of idTypes" [value]="type">{{ type }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('idType')?.hasError('required') && (form.get('idType')?.touched || submitted)">
+              El tipo de documento es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="form-label">Nombre</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="name" placeholder="Nombre" required />
+            <mat-error *ngIf="form.get('name')?.hasError('required') && (form.get('name')?.touched || submitted)">
+              El nombre es obligatorio.
+            </mat-error>
+            <mat-error *ngIf="form.get('name')?.hasError('pattern') && (form.get('name')?.touched || submitted)">
+              Solo se permiten letras y espacios.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="form-label">Teléfono</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="number" formControlName="phoneNumber" placeholder="Teléfono" required />
+            <mat-error *ngIf="form.get('phoneNumber')?.hasError('required') && (form.get('phoneNumber')?.touched || submitted)">
+              El teléfono es obligatorio.
+            </mat-error>
+            <mat-error *ngIf="form.get('phoneNumber')?.hasError('pattern') && (form.get('phoneNumber')?.touched || submitted)">
+              Solo se permiten números.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="form-label">Contraseña</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="password" formControlName="password" placeholder="Contraseña" required />
+            <mat-error *ngIf="form.get('password')?.hasError('required') && (form.get('password')?.touched || submitted)">
+              La contraseña es obligatoria.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<style>
+.simple-form { padding: 0; background: transparent; }
+.header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.form-label { font-weight: 600; margin-bottom: 8px; display: block; }
+.w-100 { width: 100%; }
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+</style> 

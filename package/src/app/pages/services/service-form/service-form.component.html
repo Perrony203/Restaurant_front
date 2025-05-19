@@ -1,0 +1,53 @@
+<mat-card class="cardWithShadow m-t-16">
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="simple-form">
+      <div class="header-row">
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Guardar</button>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label class="form-label">Cliente ID</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="number" formControlName="clientId" placeholder="ID del cliente" required />
+            <mat-error *ngIf="form.get('clientId')?.hasError('required') && (form.get('clientId')?.touched || submitted)">
+              Se necesita el ID del cliente.
+            </mat-error>
+            <mat-error *ngIf="form.get('clientId')?.hasError('pattern') && (form.get('clientId')?.touched || submitted)">
+              Solo se permiten números.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="form-label">Factura</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="number" formControlName="bill" placeholder="Factura" required />
+            <mat-error *ngIf="form.get('bill')?.hasError('required') && (form.get('bill')?.touched || submitted)">
+              La factura es obligatoria.
+            </mat-error>
+            <mat-error *ngIf="form.get('bill')?.hasError('min') && (form.get('bill')?.touched || submitted)">
+              La factura no puede ser negativa.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="form-label">Fecha de cierre</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="datetime-local" formControlName="datetimeClose" placeholder="Fecha de cierre" />
+            <mat-error *ngIf="form.get('datetimeClose')?.hasError('pastDate') && (form.get('datetimeClose')?.touched || submitted)">
+              No se puede seleccionar una fecha anterior a la actual.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<style>
+.simple-form { padding: 0; background: transparent; }
+.header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.form-label { font-weight: 600; margin-bottom: 8px; display: block; }
+.w-100 { width: 100%; }
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+</style> 

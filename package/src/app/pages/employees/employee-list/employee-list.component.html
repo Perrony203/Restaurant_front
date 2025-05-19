@@ -1,0 +1,43 @@
+<mat-card class="cardWithShadow m-t-16">
+  <mat-card-content>
+    <div class="header-row">
+      <button mat-flat-button color="primary" [routerLink]="['/dashboard/employees/create']">Crear empleado</button>
+    </div>
+    <table mat-table [dataSource]="employees" class="mat-elevation-z1 w-100">
+      <ng-container matColumnDef="employeeId">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let employee">{{ employee.employeeId }}</td>
+      </ng-container>
+      <ng-container matColumnDef="idType">
+        <th mat-header-cell *matHeaderCellDef>Tipo de documento</th>
+        <td mat-cell *matCellDef="let employee">{{ employee.idType }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let employee">{{ employee.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+        <td mat-cell *matCellDef="let employee">{{ employee.phoneNumber }}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let employee">
+          <button mat-icon-button color="accent" [routerLink]="['/dashboard/employees/edit', employee.employeeId]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteEmployee(employee.employeeId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['employeeId', 'idType', 'name', 'phoneNumber', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['employeeId', 'idType', 'name', 'phoneNumber', 'actions'];"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<style>
+.header-row { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+.w-100 { width: 100%; }
+</style> 

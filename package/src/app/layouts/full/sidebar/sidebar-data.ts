@@ -10,10 +10,18 @@ export const navItems: NavItem[] = [
     route: '/dashboard/dishes',
   },
   {
-
+    displayName: 'Services',
+    iconName: 'briefcase',
+    route: '/dashboard/services',
+  },
+  {
     displayName: 'Ingredients',
     iconName: 'avocado',
     route: '/dashboard/ingredients',
-  }
-
+  },
+  {
+    displayName: 'Empleados',
+    iconName: 'users',
+    route: '/dashboard/employees',
+  },
 ];
